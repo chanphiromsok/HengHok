@@ -1,15 +1,13 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { ContactPage } from "./page/contact.page";
-import { HomePage } from "./page/home.page";
+import { BrowserRouter, Switch } from "react-router-dom";
 import { Layout } from "./Layout";
+import { Router } from "./router/Router";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Layout exact>
-          <Route component={HomePage} path="/" exact />
-          <Route component={ContactPage} path="/contact" exact />
+        <Layout>
+          <Router />
         </Layout>
       </Switch>
     </BrowserRouter>

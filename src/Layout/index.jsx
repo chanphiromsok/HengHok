@@ -1,26 +1,21 @@
 import React from "react";
-import { LeftResizable, Top, Fill as Content, ViewPort } from "react-spaces";
+import { Top, Fill as Content, ViewPort } from "react-spaces";
 import { Header } from "./Header";
-import { SideBar } from "./Sidebar";
 
-export const Layout = ({ children, exact }) => {
+export const Layout = ({ children }) => {
   return (
     <ViewPort>
-      <Top cone size="5%" centerContent={"horizontalVertical"}>
+      <Top size="8%" centerContent={"horizontalVertical"}>
         <Header />
       </Top>
 
       <Content>
-        <LeftResizable
-          minimumSize={200}
-          maximumSize={500}
-          size="15%"
-          style={{ backgroundColor: "gray" }}
-        >
+        {/* <LeftResizable minimumSize={200} maximumSize={500} size="15%">
           <SideBar />
-        </LeftResizable>
-
-        <Content style={{ backgroundColor: "blue" }}>{children}</Content>
+        </LeftResizable> */}
+        <Content scrollable style={{ paddingTop: "40px" }}>
+          {children}
+        </Content>
       </Content>
     </ViewPort>
   );
