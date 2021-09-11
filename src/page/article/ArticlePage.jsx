@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Text, Box } from "@chakra-ui/react";
 import { getDataAsync } from "../../Axios/HttpAxios";
+import { Article } from "./Article";
+import { useHistory } from "react-router-dom";
 
 export const ArticlePage = () => {
   const [posts, setPosts] = useState([]);
   const [inc, setInc] = useState(1);
+  const history = useHistory();
 
-  useEffect(
-    () => {
-      getDataAsync().then(({ data }) => setPosts(data));
-      console.log("Component is mounting");
-      return () => {
-        console.log("Component is unmounted");
-        setPosts([]);
-      };
-    },
-    // watching inc if it change
-    [inc]
-  );
+  useEffect(() => {
+    getDataAsync().then(({ data }) => setPosts(data));
+  }, [inc]);
 
-  console.log(posts);
+  const data = useMemo(() => posts, [posts]);
+
+  const onNavigator = ({ id, title, body }) => {
+    history.push(`/article/${id}?title=${title}&body=${body}`);
+    // :topic?sort=popular
+  };
   return (
     <>
       <Text
@@ -30,7 +29,7 @@ export const ArticlePage = () => {
         a="h1"
         marginBottom="10px"
       >
-        Recent Articles
+        Articles
       </Text>
       <Box
         display="flex"
@@ -38,20 +37,12 @@ export const ArticlePage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        {posts.map((post) => (
-          <div>
-            <Box width="700px" key={post.id}>
-              <Text as="h1" fontSize="25px" fontWeight="600">
-                {post.title}
-              </Text>
-              <p>{post.body}</p>
-            </Box>
-            <Box
-              borderTop="1px solid #DDDDDD"
-              margin="32px 0px 32px 0px"
-              width="700px"
-            />
-          </div>
+        {data.map((post) => (
+          <Article
+            key={post.id}
+            post={post}
+            onClick={() => onNavigator(post)}
+          />
         ))}
       </Box>
     </>

@@ -19,7 +19,6 @@ export const HomePage = () => {
     [inc]
   );
 
-  console.log(posts);
   return (
     <>
       <Text

@@ -1,4 +1,10 @@
-import { AboutMePage, ArticlePage, CoursePage, HomePage } from "../page";
+import {
+  AboutMePage,
+  ArticlePage,
+  CoursePage,
+  HomePage,
+  OneArticle,
+} from "../page";
 import { Path } from "./path";
 
 export const RouteComponent = [
@@ -20,6 +26,12 @@ export const RouteComponent = [
   {
     path: Path.AboutMe,
     component: AboutMePage,
+    exact: true,
+  },
+
+  {
+    path: Path.Article,
+    component: OneArticle,
     exact: true,
   },
 ];
