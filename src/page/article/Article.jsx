@@ -1,7 +1,7 @@
 import React, { useCallback, memo } from "react";
-import { Text, Box, Button } from "@chakra-ui/react";
+import { Text, Box } from "@chakra-ui/react";
 
-export const Article = memo(({ post, onClick }) => {
+export const Article = memo(({ post, onClick, isOne }) => {
   return (
     <>
       <Box width="700px">
@@ -14,17 +14,19 @@ export const Article = memo(({ post, onClick }) => {
           {post.title}
         </Text>
         <Text as="p">{post.body}</Text>
-        <Text
-          marginTop="10px"
-          fontWeight="500"
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-          }}
-          onClick={() => onClick()}
-        >
-          Read More...
-        </Text>
+        {isOne && (
+          <Text
+            marginTop="10px"
+            fontWeight="500"
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
+            onClick={() => onClick()}
+          >
+            Read More...
+          </Text>
+        )}
       </Box>
       <Box
         borderTop="1px solid #DDDDDD"

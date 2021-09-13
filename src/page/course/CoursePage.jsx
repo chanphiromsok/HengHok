@@ -1,5 +1,6 @@
 import React from "react";
-import { Text } from "@chakra-ui/react";
+import { Text, Box } from "@chakra-ui/react";
+import { Course } from "./Course";
 
 export const CoursePage = () => {
   return (
@@ -10,9 +11,18 @@ export const CoursePage = () => {
         lineHeight="53px"
         fontWeight="700"
         a="h1"
+        marginBottom="10px"
       >
         Course
       </Text>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Course />
+      </Box>
     </>
   );
 };

@@ -39,6 +39,7 @@ export const ArticlePage = () => {
       >
         {data.map((post) => (
           <Article
+            isOne
             key={post.id}
             post={post}
             onClick={() => onNavigator(post)}

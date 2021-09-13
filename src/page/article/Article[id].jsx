@@ -6,12 +6,13 @@ import { Article } from "./Article";
 export const OneArticle = () => {
   const router = useRouter();
   const hist = useHistory();
-  console.log(router.query);
+
+  // fetchByID
 
   return (
     <div>
       <Button onClick={() => hist.goBack()}> Back </Button>
-      <Article post={router.query} />
+      <Article isOne={false} post={router.query} />
     </div>
   );
 };
